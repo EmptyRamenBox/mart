@@ -6,8 +6,13 @@
         class="text-none font-weight-light headline"
         @click="$router.push('/')"
       >
-        <span>Mucho</span>
-        <span class="font-weight-regular">Shop</span>
+        <v-img
+          src="https://www.gimp.org/images/frontpage/wilber-big.png"
+          max-width="50"
+          max-height="50"
+        ></v-img>
+        <span>Art</span>
+        <span class="font-weight-regular">Mart</span>
       </v-btn>
     </v-toolbar-title>
 
