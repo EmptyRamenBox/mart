@@ -28,7 +28,7 @@
             <span class="mr-2">{{ user.displayName }}</span>
             <v-icon>mdi-menu-down</v-icon>
           </v-btn>
-          <v-badge color="error" overlap>
+          <v-badge v-if="cart" color="error" overlap>
             <template v-slot:badge>{{ cart.items.length }}</template>
             <v-btn text @click="$router.push('/cart')">
               <v-icon>mdi-cart</v-icon>
@@ -65,6 +65,8 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import { db } from "../plugins/firebase";
+
 export default {
   name: "NavBar",
   data() {
@@ -77,11 +79,17 @@ export default {
       user: "getUser",
     }),
   },
+  updated() {
+    this.bind();
+  },
   methods: {
     async logOut() {
       await this.$firebase.auth().signOut();
       this.setUser("");
       this.$router.push("/");
+    },
+    async bind() {
+      await this.$bind("cart", db.collection("cart").doc(this.user.uid));
     },
     ...mapActions(["setUser"]),
   },

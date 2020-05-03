@@ -32,6 +32,16 @@ export default new Vuex.Store({
         await userRef.set(userObject, { merge: true }); // if the database already has the account, merge new account info with existing info
         const userDB = await userRef.get();
         commit("settingUser", { uid: user.uid, ...userDB.data() });
+        // create a "Cart"
+        // when the user logs in, to keep track
+        // of what the user adds to his shopping cart
+        await db
+          .collection("cart")
+          .doc(user.uid)
+          .set({
+            items: [],
+            total: 0,
+          });
       } else {
         commit("settingUser", "");
       }
