@@ -9,11 +9,12 @@ const vuetify = new Vuetify({
   theme: {
     themes: {
       light: {
-        primary: colors.cyan.darken1,
-        secondary: colors.blue.accent1,
-        tertiary: colors.lightBlue.accent3,
+        primary: colors.cyan.accent4,
+        secondary: colors.blue.accent2,
+        tertiary: colors.lightBlue.ligthen2,
         accent: colors.lime.accent3,
         background: colors.blueGrey.darken1,
+        overlay: colors.indigo.darken3,
       },
     },
   },

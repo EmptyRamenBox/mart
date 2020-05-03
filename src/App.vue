@@ -2,7 +2,7 @@
   <v-app>
     <NavBar />
 
-    <v-content class="background light-blue--text text--lighten-5">
+    <v-content class="mt-4 background light-blue--text text--lighten-5">
       <router-view></router-view>
     </v-content>
   </v-app>
@@ -17,7 +17,7 @@ export default {
     //
   }),
   components: {
-    NavBar
-  }
+    NavBar,
+  },
 };
 </script>
