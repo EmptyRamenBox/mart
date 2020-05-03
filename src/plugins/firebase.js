@@ -2,6 +2,7 @@ import Vue from "vue";
 
 import firebase from "firebase/app";
 import "firebase/firebase-auth";
+import "firebase/firestore";
 
 import * as firebaseui from "firebaseui";
 
@@ -20,3 +21,5 @@ const ui = new firebaseui.auth.AuthUI(firebase.auth());
 
 Vue.prototype.$firebase = firebase;
 Vue.prototype.$firebaseui = ui;
+
+export const db = firebase.firestore();

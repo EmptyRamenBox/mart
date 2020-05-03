@@ -6,6 +6,8 @@ import MyOrders from "../views/MyOrders.vue";
 import Cart from "../views/Cart.vue";
 import Inventory from "../views/Inventory.vue";
 
+import store from "../store";
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -23,16 +25,19 @@ const routes = [
     path: "/myorders",
     name: "MyOrders",
     component: MyOrders,
+    meta: { requiresRole: "user" },
   },
   {
     path: "/cart",
     name: "Cart",
     component: Cart,
+    meta: { requiresRole: "user" },
   },
   {
     path: "/inventory",
     name: "Inventory",
     component: Inventory,
+    meta: { requiresRole: "admin" }, // requires an Administrator Account
   },
 ];
 
@@ -40,6 +45,21 @@ const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((record) => record.meta.requiresRole)) {
+    if (
+      store.getters.getUser.roles &&
+      store.getters.getUser.roles[to.meta.requiresRole]
+    ) {
+      next();
+    } else {
+      next("/login");
+    }
+  } else {
+    next(); // make sure to always call next()!
+  }
 });
 
 export default router;

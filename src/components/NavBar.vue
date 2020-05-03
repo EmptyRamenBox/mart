@@ -1,7 +1,11 @@
 <template>
   <v-app-bar app color="primary" dark>
     <v-toolbar-title class="font-weight-light">
-      <v-btn text class="text-none font-weight-light headline" @click="$router.push('/')">
+      <v-btn
+        text
+        class="text-none font-weight-light headline"
+        @click="$router.push('/')"
+      >
         <span>Mucho</span>
         <span class="font-weight-regular">Shop</span>
       </v-btn>
@@ -60,13 +64,13 @@ export default {
   name: "NavBar",
   data() {
     return {
-      cart: {}
+      cart: {},
     };
   },
   computed: {
     ...mapGetters({
-      user: "getUser"
-    })
+      user: "getUser",
+    }),
   },
   methods: {
     async logOut() {
@@ -74,7 +78,7 @@ export default {
       this.setUser("");
       this.$router.push("/");
     },
-    ...mapActions(["setUser"])
-  }
+    ...mapActions(["setUser"]),
+  },
 };
 </script>
